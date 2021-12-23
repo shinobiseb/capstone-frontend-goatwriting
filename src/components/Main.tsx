@@ -54,6 +54,7 @@ export const Main = (props: any) => {
     return (
         <main>
             <Routes>
+              <   Route path="/" element={<Index notes={note} createNote={createNote}/>}/>
                 <Route path="/notes/" element={<Index notes={note} createNote={createNote}/>}/>
                 <Route path="/notes/:id" element={<Show 
           notes={note} 

@@ -47,9 +47,11 @@ function Show(props: any, deleteNote: any) {
 
   return (
     <div className="notes">
+      <div className="Lyrics">
       <h1>{note.title}</h1>
-      <h2>{note.lyrics}</h2>
+      <h5>{note.lyrics}</h5>
       <h3>{note.chords}</h3>
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -57,6 +59,7 @@ function Show(props: any, deleteNote: any) {
           name="title"
           placeholder="name"
           onChange={handleChange}
+          key={Math.random() * 100}
         />
         <input
           type="text"
@@ -64,21 +67,19 @@ function Show(props: any, deleteNote: any) {
           name="chords"
           placeholder="title"
           onChange={handleChange}
+          key={Math.random() * 100}
         />
         <textarea
           value={editForm.lyrics}
           name="lyrics"
           placeholder="Lyrics"
           onChange={handleChange}
+          key={Math.random() * 100}
         />
-        <div className="buttons">
-        <button className="showButton "type="submit" value="Update Notes">Update</button>
-
-        <button className="showButton" onClick = {()=> {setShow(true)}}>Delete</button>
-        <Modal onClose={()=> setShow(false)} show={show} delButton={deleteButton()}/>
-        </div>
+        <input className="buttonShow "type="submit" value="Update Notes" key={Math.random() * 100}/>
       </form>
-        
+        <button className="buttonShow" onClick = {()=> {setShow(true)}}>Delete</button>
+        <Modal onClose={()=> setShow(false)} show={show} delButton={deleteButton()} key={Math.random() * 100}/>
     </div>
   );
 }
