@@ -18,7 +18,7 @@ function Index(props:any) {
   // handle submit function for form
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    props.createPeople(newForm);
+    props.createNote(newForm);
     setNewForm({
       title: "",
       lyrics: "",
@@ -27,18 +27,23 @@ function Index(props:any) {
   };
 
 
+
   // loaded function
   const loaded = () => {
 
     {console.log(props.notes)}
       
-    return <div>
+    return <div className="songs">
         {props.notes.map((note: any) => {
-        // <div>
-        return <div key={note.id} className="note">
-        <Link to={`/notes/${note._id}`}><h1>{note.chords}</h1></Link>
+        {if(note.title) {
+        return <div className="indexContainer">
+        <div key={note.id} className="note card-panel">
+        <Link to={`/notes/${note._id}`} className="noteTitle"><h3>{note.title}</h3>
+        </Link>
         </div>
-        })};
+        </div>}}
+        
+        })}
     </div>
   };
 
@@ -46,33 +51,36 @@ function Index(props:any) {
     return <h1>Loading...</h1>;
   };
   return (
+    
     <section>
+      <div className="songCard">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={newForm.title}
-          name="name"
-          placeholder="name"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          value={newForm.lyrics}
-          name="lyrics"
-          placeholder="lyrics URL"
+          name="title"
+          placeholder="Title"
           onChange={handleChange}
         />
         <input
           type="text"
           value={newForm.chords}
           name="chords"
-          placeholder="chords"
+          placeholder="Chords"
           onChange={handleChange}
         />
-        <input type="submit" value="Create Person" />
+        <textarea
+          value={newForm.lyrics}
+          name="lyrics"
+          placeholder="Lyrics"
+          onChange={handleChange}
+        />
+        <button className="buttonBlue" type="submit" value="Create Note">Create New Song</button>
       </form>
-      {props.people ? loaded() : loading()}
+      </div>
+      {props.notes ? loaded() : loading()}
     </section>
+  
   );
 }
 
