@@ -1,8 +1,12 @@
-import React, { FC } from "react";
+import { Link } from "react-router-dom"
 
 
 export const Header = () => {
-    return <div>
-        <h1>GoatWriting</h1>
-    </div>
+    return (
+    <nav className="nav">
+      <Link to="/">
+        <h1>Goatwriting</h1>
+      </Link>
+    </nav>
+    )
 }
